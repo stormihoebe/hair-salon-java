@@ -35,7 +35,22 @@ public class StylistTest {
       Stylist testStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
       assertEquals("experienced stylist, specializes in dying/bleaching", testStylist.getDescription());
     }
-
+  @Test
+  public void all_allReturnsAllInstancesOfStylists_true() {
+    Stylist myStylistOne = new Stylist("test name", "experienced stylist, specializes in dying/bleaching");
+    Stylist myStylistTwo = new Stylist ("test name 2", "experienced stylist, specializes in dying/bleaching");
+    myStylistOne.save();
+    myStylistTwo.save();
+    assertTrue(Stylist.all().get(0).equals(myStylistOne));
+    assertTrue(Stylist.all().get(1).equals(myStylistTwo));
+  }
+  @Test
+  public void save_assignsIdToStylist_true() {
+    Stylist myStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
+    myStylist.save();
+    Stylist savedStylist = Stylist.all().get(0);
+    assertEquals(myStylist.getId(), savedStylist.getId());
+  }
 
 
 
