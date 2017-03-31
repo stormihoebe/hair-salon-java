@@ -23,5 +23,13 @@ public class StylistTest {
       Stylist testStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
       assertTrue(testStylist instanceof Stylist);
     }
+  @Test
+    public void getName_instantiatesWithName_String() {
+      Stylist testStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
+      assertEquals("test name", testStylist.getName());
+    }
+
+
+
 
 }
