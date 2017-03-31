@@ -29,4 +29,10 @@ public class ClientTest {
     assertEquals(testClient.getStylistId(), 1);
   }
 
+  @Test
+  public void getName_clientInstantiatesWithName_true(){
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    assertEquals(testClient.getName(), "name");
+  }
+
 }

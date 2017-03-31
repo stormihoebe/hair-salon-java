@@ -15,4 +15,7 @@ public class Client {
   public int getStylistId(){
     return stylist_id;
   }
+  public String getName(){
+    return name;
+  }
 }
