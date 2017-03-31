@@ -10,7 +10,7 @@
       </br>
       <h3>Client List</h3>
 
-      #foreach ($client in $clients)
+      #foreach ($client in $stylist.getClients())
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">$client.getName()</h3>
@@ -59,8 +59,8 @@
                 <div class="modal-body">
                   <form action="/stylists/$stylist.getId()/update/client-stylist/$client.getId()" method="post">
                     <div class="form-group">
-                      <label for="certId">Select New Stylist</label>
-                      <select class = "form-control" id='certId' name='certId' type='text'>
+                      <label for="stylistId">Select New Stylist</label>
+                      <select class = "form-control" id='stylistId' name='stylistId' type='text'>
                         #foreach($stylist in $stylists)
                           <option  value="$stylist.getId()">$stylist.getName()</option>
                         #end
