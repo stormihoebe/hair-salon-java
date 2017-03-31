@@ -23,4 +23,10 @@ public class ClientTest {
     assertTrue(testClient instanceof Client);
   }
 
+  @Test
+  public void getStylistId_clientInstantiatesWithStylistId_true(){
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    assertEquals(testClient.getStylistId(), 1);
+  }
+
 }
