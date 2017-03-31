@@ -51,9 +51,9 @@
         <h4 class="modal-title">Update $stylist.getName()</h4>
       </div>
       <div class="modal-body">
-        <form action="/stylists/$stylist.getId()/update/" method="post">
-          <label for="comment">New Description:</label><br>
-          <textarea id="comment" name="comment" type="text" rows="5" class="form-control">$stylist.getDescription()</textarea>
+        <form action="/stylists/$stylist.getId()/update" method="post">
+          <label for="description">New Description:</label><br>
+          <textarea id="description" name="description" type="text" rows="5" class="form-control">$stylist.getDescription()</textarea>
           <br>
           <button type="submit" class="btn btn-info">Update</button>
         </form>
