@@ -33,6 +33,34 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+
+
+    get("/clients/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("stylists", Stylist.all());
+      model.put("template", "templates/client-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/clients", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      String description = request.queryParams("description");
+      int stylistId = Integer.parseInt(request.queryParams("stylistId"));
+      Client newClient = new Client(stylistId, name, description);
+      newClient.save();
+      String url = String.format("/clients/success");
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/clients/success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/client-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
     get("/stylists", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("stylists", Stylist.all());
@@ -115,7 +143,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/clients", (request, response) -> {
+    get("/clients-without", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("clients", Client.all());
       model.put("stylists", Stylist.all());
@@ -129,7 +157,7 @@ public class App {
       Client client = Client.find(Integer.parseInt(request.params(":id")));
       int stylistId = Integer.parseInt(request.queryParams("stylistId"));
       client.updateStylistForClient(stylistId);
-      String url = String.format("/clients");
+      String url = String.format("/clients-without");
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -138,7 +166,7 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Client client = Client.find(Integer.parseInt(request.params(":id")));
       client.deleteClient();
-      String url = String.format("/clients");
+      String url = String.format("/clients-without");
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
