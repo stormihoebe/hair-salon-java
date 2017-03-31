@@ -46,14 +46,24 @@ public class Client {
     }
   }
   public static Client find(int id) {
-      try(Connection con = DB.sql2o.open()) {
-        String sql = "SELECT * FROM clients WHERE id = :id;";
-        Client client = con.createQuery(sql)
-          .addParameter("id", id)
-          .executeAndFetchFirst(Client.class);
-        return client;
-      }
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients WHERE id = :id;";
+      Client client = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+      return client;
     }
+  }
+
+  public void updateDescription(String description) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE clients SET description = :description WHERE id = :id;";
+      con.createQuery(sql)
+      .addParameter("description", description)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
 
   @Override
   public boolean equals(Object otherClient) {
@@ -64,4 +74,5 @@ public class Client {
       return this.getName().equals(newClient.getName());
     }
   }
+
 }

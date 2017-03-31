@@ -74,6 +74,13 @@ public class ClientTest {
       clientTwo.save();
       assertEquals(Client.find(clientTwo.getId()), clientTwo);
     }
+  @Test
+  public void updateDescription_updatesDescriptionOfClient_true() {
+    Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    clientOne.save();
+    clientOne.updateDescription("medium hair, trims ever other month");
+    assertEquals("medium hair, trims ever other month", Client.find(clientOne.getId()).getDescription());
+  }
 
 
 
