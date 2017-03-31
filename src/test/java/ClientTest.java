@@ -43,7 +43,7 @@ public class ClientTest {
   }
 
   @Test
-  public void all_returnsAllSavedRatings() {
+  public void all_returnsAllSavedRatings_true() {
     Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
     clientOne.save();
     Client clientTwo = new Client(1, "name2", "regular customer, long hair");
@@ -51,6 +51,14 @@ public class ClientTest {
     assertTrue(Client.all().get(0).equals(clientOne));
     assertTrue(Client.all().get(1).equals(clientTwo));
   }
+
+  @Test
+  public void save_savesClientRecordtoDatabase_true() {
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    testClient.save();
+    assertTrue(Client.all().get(0).equals(testClient));
+  }
+
 
 
 
