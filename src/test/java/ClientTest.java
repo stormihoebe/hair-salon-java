@@ -43,7 +43,7 @@ public class ClientTest {
   }
 
   @Test
-  public void all_returnsAllSavedRatings_true() {
+  public void all_returnsAllSavedClients_true() {
     Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
     clientOne.save();
     Client clientTwo = new Client(1, "name2", "regular customer, long hair");
@@ -59,7 +59,21 @@ public class ClientTest {
     assertTrue(Client.all().get(0).equals(testClient));
   }
 
+  @Test
+  public void getId_clientAssignedIdOnSave_true() {
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    testClient.save();
+    assertTrue(testClient.getId() > 1);
+  }
 
+  @Test
+    public void find_returnsClientWithSameId_clientTwo() {
+      Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+      clientOne.save();
+      Client clientTwo = new Client(1, "name", "regular customer, Medium hair, trim every other weeks");
+      clientTwo.save();
+      assertEquals(Client.find(clientTwo.getId()), clientTwo);
+    }
 
 
 
