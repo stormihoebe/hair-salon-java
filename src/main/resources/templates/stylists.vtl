@@ -1,0 +1,16 @@
+<!-- stylists.vtl -->
+
+<h1>All stylists</h1>
+
+#foreach ($stylist in $stylists)
+  <a href="/stylists/$stylist.getId()">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">$stylist.getName()</h3>
+      </div>
+      <div class="panel-body">
+        <p>$stylist.getDescription()</p>
+      </div>
+    </div> <!--end panel-->
+  </a>
+#end

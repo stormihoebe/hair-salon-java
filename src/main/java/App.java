@@ -21,6 +21,24 @@ public class App {
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
+    post("/stylists", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      String description = request.queryParams("description");
+      Stylist newStylist = new Stylist(name, description);
+      newStylist.save();
+      String url = String.format("/stylists");
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/stylists", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("stylists", Stylist.all());
+      model.put("template", "templates/stylists.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
 
 
