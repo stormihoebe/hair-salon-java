@@ -35,4 +35,10 @@ public class ClientTest {
     assertEquals(testClient.getName(), "name");
   }
 
+  @Test
+  public void getDescription_clientInstantiatesWithDes_true(){
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    assertEquals(testClient.getDescription(), "regular customer, short hair, trim every other weeks");
+  }
+
 }
