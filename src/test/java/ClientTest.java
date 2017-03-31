@@ -2,7 +2,7 @@ import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ClientsTest {
+public class ClientTest {
 
   @Before
   public void setUp() {
@@ -12,9 +12,15 @@ public class ClientsTest {
   @After
   public void tearDown() {
     try (Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM name_of_your_table *;";
+      String sql = "DELETE FROM clients *;";
       con.createQuery(sql).executeUpdate();
     }
+  }
+
+  @Test
+  public void Rating_instantiatesCorrectly_true(){
+    Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    assertTrue(testClient instanceof Client);
   }
 
 }
