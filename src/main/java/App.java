@@ -3,6 +3,7 @@ import java.util.HashMap;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
+import java.util.List;
 
 public class App {
   public static void main(String[] args) {
@@ -110,6 +111,34 @@ public class App {
       Client client = Client.find(Integer.parseInt(request.params(":id2")));
       client.deleteClient();
       String url = String.format("/stylists/"+stylist.getId());
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/clients", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("clients", Client.all());
+      model.put("stylists", Stylist.all());
+      model.put("StylistClass", Stylist.class);
+      model.put("template", "templates/clients-without.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/clients-without/update-stylist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      int stylistId = Integer.parseInt(request.queryParams("stylistId"));
+      client.updateStylistForClient(stylistId);
+      String url = String.format("/clients");
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/clients-without/delete-client/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      client.deleteClient();
+      String url = String.format("/clients");
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

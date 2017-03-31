@@ -1,0 +1,75 @@
+<h1>Clients without Stylist</h1>
+<h3>These clients do not have an assigned stylist. The stylist they previously worked with is no longer at the salon</h3>
+
+#foreach($client in $clients)
+  #if (!$stylists.contains($StylistClass.find($client.getStylistId())))
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">$client.getName()</h3>
+    </div>
+    <div class="panel-body">
+      <p>$client.getDescription()</p>
+      <button id="update-btn" type="button" class="btn btn-info btn-xs alignRight" data-toggle="modal" data-target="#updateStylistForClient-$client.getId()">Assign Stylist</button>
+      <button id="update-btn" type="button" class="btn btn-danger btn-xs alignRight" data-toggle="modal" data-target="#deleteClient-$client.getId()">Delete Client</button>
+    </div>
+  </div> <!--end panel-->
+
+  <!-- UPDATING CLIENT STYLIST MODAL -->
+  <div id="updateStylistForClient-$client.getId()" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update $client.getName()'s Description</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/clients-without/update-stylist/$client.getId()" method="post">
+            <div class="form-group">
+              <label for="stylistId">Select New Stylist</label>
+              <select class = "form-control" id='stylistId' name='stylistId' type='text'>
+                #foreach($stylist in $stylists)
+                  <option  value="$stylist.getId()">$stylist.getName()</option>
+                #end
+              </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-info">Update Stylist</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- DELETE CLIENT MODAL -->
+  <div id="deleteClient-$client.getId()" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update $client.getName()'s Description</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/clients-without/delete-client/$client.getId()" method="post">
+            <div class="form-group">
+              <p>
+                Are you sure you want to remove $client.getName()? All records will be deleted. Changes will be permanent.
+              </p>
+              <button type="submit" class="btn btn-danger">Remove</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  #end
+#end
