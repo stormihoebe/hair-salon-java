@@ -43,6 +43,24 @@ public class Stylist {
     }
   }
 
+  public static Stylist find(int id) {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM stylists where id=:id;";
+      Stylist roaster = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Stylist.class);
+      return roaster;
+    }
+  }
+
+  public void delete(){
+    try(Connection con = DB.sql2o.open()) {
+     String sql = "DELETE FROM stylists WHERE id = :id;";
+     con.createQuery(sql)
+       .addParameter("id", id)
+       .executeUpdate();
+     }
+  }
 
   @Override
   public boolean equals(Object otherStylist) {

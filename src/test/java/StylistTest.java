@@ -52,6 +52,21 @@ public class StylistTest {
     assertEquals(myStylist.getId(), savedStylist.getId());
   }
 
+  @Test
+  public void delete_deleteStylistWithSameId_true(){
+    Stylist myStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
+    myStylist.save();
+    int myStylistId = myStylist.getId();
+    myStylist.delete();
+    assertEquals(null, Stylist.find(myStylistId));
+  }
+
+  @Test
+  public void find_findReturnsRoasterWithSameId_true() {
+    Stylist myStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
+    myStylist.save();
+    assertEquals(Stylist.find(myStylist.getId()), myStylist);
+  }
 
 
 }
