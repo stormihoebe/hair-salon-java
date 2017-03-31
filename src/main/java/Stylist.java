@@ -62,6 +62,16 @@ public class Stylist {
      }
   }
 
+  public void updateDescription(String description) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET description = :description WHERE id = :id;";
+      con.createQuery(sql)
+      .addParameter("description", description)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   @Override
   public boolean equals(Object otherStylist) {
     if(!(otherStylist instanceof Stylist)){

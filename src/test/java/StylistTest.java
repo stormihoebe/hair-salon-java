@@ -68,5 +68,13 @@ public class StylistTest {
     assertEquals(Stylist.find(myStylist.getId()), myStylist);
   }
 
+  @Test
+  public void updateDescription_updatesDescriptionOfClient_true() {
+    Stylist myStylist = new Stylist ("test name", "experienced stylist, specializes in dying/bleaching");
+    myStylist.save();
+    myStylist.updateDescription("Stylist of the year 2016");
+    assertEquals("Stylist of the year 2016", Stylist.find(myStylist.getId()).getDescription());
+  }
+
 
 }
