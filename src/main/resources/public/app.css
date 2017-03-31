@@ -1,0 +1,44 @@
+.jumbotron{
+  background-image: url(/images/coverimg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+.jumbotron h1 {
+  margin-left: 10%;
+}
+.floatRight{
+  float: right;
+}
+.unstyledlinks, .unstyledlinks:hover {
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  background-color: #4c403f;
+}
+.pages {
+  background: #eaeaed;
+  min-height: 800px;
+  display: block;
+  margin: auto;
+}
+.grey-row{
+  background-color: #9e667f;
+  padding: 10px;
+
+}
+
+.boxes {
+  text-align: center;
+  background-color: white;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 2.5;
+  margin-right: 2.5;
+  min-height: 230px;
+}
+form {
+  padding: 20px;
+}

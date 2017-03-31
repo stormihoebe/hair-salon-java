@@ -1,5 +1,5 @@
-<h1>Clients without Stylist</h1>
-<h3>These clients do not have an assigned stylist. The stylist they previously worked with is no longer at the salon.</h3>
+<h1>Clients without a Stylist</h1>
+<h3>These clients do not have an assigned stylist. The stylist they previously worked with is no longer at the salon. Select "Assign Stylist" to update stylist information.</h3>
 
 #foreach($client in $clients)
   #if (!$stylists.contains($StylistClass.find($client.getStylistId())))

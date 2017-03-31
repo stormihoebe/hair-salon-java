@@ -1,9 +1,9 @@
 <!-- stylists.vtl -->
 
-<h1>All stylists <span class="floatRight">Number of Clients</span></h1>
+<h1>All Stylists <span class="floatRight">Number of Clients</span></h1>
 
 #foreach ($stylist in $stylists)
-  <a href="/stylists/$stylist.getId()">
+  <a href="/stylists/$stylist.getId()" class="unstyledlinks">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">$stylist.getName() <span class="floatRight"> $stylist.getClients().size()</span></h3>
