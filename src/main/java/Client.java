@@ -21,4 +21,36 @@ public class Client {
   public String getDescription(){
     return description;
   }
-}
+  public int getId(){
+    return id;
+  }
+
+  public static List<Client> all() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM clients;";
+        return con.createQuery(sql)
+          .executeAndFetch(Client.class);
+      }
+    }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO clients (stylist_id, name, description) VALUES (:stylist_id, :name, :description)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("stylist_id", stylist_id)
+        .addParameter("name", name)
+        .addParameter("description", description)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+  @Override
+  public boolean equals(Object otherClient) {
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      return this.getName().equals(newClient.getName());
+    }
+  }
