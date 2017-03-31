@@ -1,11 +1,11 @@
-# _Hair Salon_
+# Hair Salon
 
-#### _Hair Salon, 03-31-2017_
+#### Hair Salon, 03-31-2017
 
-#### By _**Stormi Hoebelheinrich**_
+#### By **Stormi Hoebelheinrich**
 
 ## Description
-Hair Salon is a system that allows a hair salon company to keep track of stylists and customers. It allows an administrator to add clients, stylists, and make updates and changes to data. 
+Hair Salon is a system that allows a hair salon company to keep track of stylists and customers. It allows an administrator to add clients, stylists, and make updates and changes to data.
 
 ## Specifications
 
@@ -23,14 +23,15 @@ Hair Salon is a system that allows a hair salon company to keep track of stylist
 
 ## Setup/Installation Requirements
 
-* _Clone the repository_
-* _In PSQL:_
-* _CREATE DATABASE hair_salon;_
-* _\c hair_salon;_
-* _CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, description varchar);_
-* _CREATE TABLE clients (id serial PRIMARY KEY, stylist_id int, name varchar, description varchar);_
-* _Run the command 'gradle run'_
-* _Open browser and go to localhost:4567_
+* Clone the repository
+* In PSQL:
+* CREATE DATABASE hair_salon;
+* \c hair_salon;
+* CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, description varchar);
+* CREATE TABLE clients (id serial PRIMARY KEY, stylist_id int, name varchar, description varchar);
+* (Optional) open App.java in Atom or any other text editor. Lines 13-29 have been commented out and contain some stylists and clients. If you uncomment these lines, and save the changes before running gradle, the App will populate with these stylists and clients so you can explore the app without having to create your own. (Note: Every time you run gradle without clearing the database, duplicates of these entries will occur which may be undesirable)
+* Run the command 'gradle run'
+* Open browser and go to localhost:4567
 
 
 ### License
