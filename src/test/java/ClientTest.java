@@ -81,7 +81,14 @@ public class ClientTest {
     clientOne.updateDescription("medium hair, trims ever other month");
     assertEquals("medium hair, trims ever other month", Client.find(clientOne.getId()).getDescription());
   }
-
+  @Test
+  public void deleteClient_deletesClientWithSameId_true(){
+    Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    clientOne.save();
+    int clientOneId = clientOne.getId();
+    clientOne.deleteClient();
+    assertEquals(null, Client.find(clientOneId));
+  }
 
 
 
