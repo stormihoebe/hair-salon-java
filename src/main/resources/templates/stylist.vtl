@@ -6,6 +6,7 @@
       <p>$stylist.getDescription()</p>
       <br>
       <button type="button" name="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateStylistDescription">Update Stylist Description</button>
+      <button type="button" name="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteStylist">Remove Stylist</button>
       </br>
       <h3>Client List</h3>
 
@@ -42,6 +43,7 @@
 
 </div>
 
+<!-- UPDATING STYLIST DESCRIPTION MODAL -->
 <div id="updateStylistDescription" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -56,6 +58,30 @@
           <textarea id="description" name="description" type="text" rows="5" class="form-control">$stylist.getDescription()</textarea>
           <br>
           <button type="submit" class="btn btn-info">Update</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DELETING STYLIST MODAL -->
+<div id="deleteStylist" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Remove $stylist.getName() From Records</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/stylists/$stylist.getId()/delete" method="post">
+          <p>
+            Are you sure you want to remove $stylist.getName()? All records will be deleted. Changes will be permanent.
+          </p>
+          <button type="submit" class="btn btn-danger">Remove</button>
         </form>
       </div>
       <div class="modal-footer">
