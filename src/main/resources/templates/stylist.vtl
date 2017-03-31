@@ -22,6 +22,87 @@
               <button id="update-btn" type="button" class="btn btn-danger btn-xs alignRight" data-toggle="modal" data-target="#deleteClient-$client.getId()">Delete Client</button>
             </div>
           </div> <!--end panel-->
+
+          <!-- UPDATING Client DESCRIPTION MODAL -->
+          <div id="updateClietDescription-$client.getId()" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Update $client.getName()'s Description</h4>
+                </div>
+                <div class="modal-body">
+                  <form action="/stylists/$stylist.getId()/update/client-description/$client.getId()" method="post">
+                    <label for="description">New Description:</label><br>
+                    <textarea id="description" name="description" type="text" rows="5" class="form-control">$client.getDescription()</textarea>
+                    <br>
+                    <button type="submit" class="btn btn-info">Update</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPDATING CLIENT STYLIST MODAL -->
+          <div id="updateStylistForClient-$client.getId()" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Update $client.getName()'s Description</h4>
+                </div>
+                <div class="modal-body">
+                  <form action="/stylists/$stylist.getId()/update/client-stylist/$client.getId()" method="post">
+                    <div class="form-group">
+                      <label for="certId">Select New Stylist</label>
+                      <select class = "form-control" id='certId' name='certId' type='text'>
+                        #foreach($stylist in $stylists)
+                          <option  value="$stylist.getId()">$stylist.getName()</option>
+                        #end
+                      </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-info">Update Stylist</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- DELETE CLIENT MODAL -->
+          <div id="deleteClient-$client.getId()" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Update $client.getName()'s Description</h4>
+                </div>
+                <div class="modal-body">
+                  <form action="/stylists/$stylist.getId()/update/client-stylist/$client.getId()" method="post">
+                    <div class="form-group">
+                      <p>
+                        Are you sure you want to remove $client.getName()? All records will be deleted. Changes will be permanent.
+                      </p>
+                      <button type="submit" class="btn btn-danger">Remove</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       #end
     </div>
     <div class="col-md-5">
