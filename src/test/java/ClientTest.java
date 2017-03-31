@@ -74,6 +74,7 @@ public class ClientTest {
       clientTwo.save();
       assertEquals(Client.find(clientTwo.getId()), clientTwo);
     }
+
   @Test
   public void updateDescription_updatesDescriptionOfClient_true() {
     Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
@@ -81,6 +82,14 @@ public class ClientTest {
     clientOne.updateDescription("medium hair, trims ever other month");
     assertEquals("medium hair, trims ever other month", Client.find(clientOne.getId()).getDescription());
   }
+  @Test
+  public void updateStylistForClient_updatesStyOfClient_true() {
+    Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    clientOne.save();
+    clientOne.updateStylistForClient(2);
+    assertEquals(2, Client.find(clientOne.getId()).getStylistId());
+  }
+
   @Test
   public void deleteClient_deletesClientWithSameId_true(){
     Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
