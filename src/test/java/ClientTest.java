@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.List;
 
 public class ClientTest {
 
@@ -18,7 +19,7 @@ public class ClientTest {
   }
 
   @Test
-  public void Rating_instantiatesCorrectly_true(){
+  public void Client_instantiatesCorrectly_true(){
     Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
     assertTrue(testClient instanceof Client);
   }
@@ -40,5 +41,21 @@ public class ClientTest {
     Client testClient = new Client(1, "name", "regular customer, short hair, trim every other weeks");
     assertEquals(testClient.getDescription(), "regular customer, short hair, trim every other weeks");
   }
+
+  @Test
+  public void all_returnsAllSavedRatings() {
+    Client clientOne = new Client(1, "name", "regular customer, short hair, trim every other weeks");
+    clientOne.save();
+    Client clientTwo = new Client(1, "name2", "regular customer, long hair");
+    clientTwo.save();
+    assertTrue(Client.all().get(0).equals(clientOne));
+    assertTrue(Client.all().get(1).equals(clientTwo));
+  }
+
+
+
+
+
+
 
 }

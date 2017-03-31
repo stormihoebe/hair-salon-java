@@ -1,4 +1,5 @@
 import org.sql2o.*;
+import java.util.List;
 
 public class Client {
   private int id;
@@ -54,3 +55,4 @@ public class Client {
       return this.getName().equals(newClient.getName());
     }
   }
+}
