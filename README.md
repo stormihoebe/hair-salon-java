@@ -29,7 +29,6 @@ Hair Salon is a system that allows a hair salon company to keep track of stylist
 * \c hair_salon;
 * CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, description varchar);
 * CREATE TABLE clients (id serial PRIMARY KEY, stylist_id int, name varchar, description varchar);
-* (Optional) open App.java in Atom or any other text editor. Lines 13-29 have been commented out and contain some stylists and clients. If you uncomment these lines, and save the changes before running gradle, the App will populate with these stylists and clients so you can explore the app without having to create your own. (Note: Every time you run gradle without clearing the database, duplicates of these entries will occur which may be undesirable)
 * Run the command 'gradle run'
 * Open browser and go to localhost:4567
 
